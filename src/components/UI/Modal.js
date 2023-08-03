@@ -1,24 +1,29 @@
-import { Fragment } from 'react';
-import { ReactDOM } from 'react-dom';
-import styles from './Modal.module.css';
+import { Fragment } from "react";
+import * as ReactDOM from "react-dom"; // this is a bug workaround as ReactDOM wouldn't import
+import styles from "./Modal.module.css";
 
-const Backdrop = () => {
+const Backdrop = (props) => {
+	return <div className={styles.backdrop}></div>;
+};
+
+const ModalOverlay = (props) => {
 	return (
-		<div className={styles.backdrop}></div>
+		<div className={styles.modal}>
+			<div className={styles.content}>{props.children}</div>
+		</div>
 	);
 };
 
-const ModalOverlay = () => {
-	return (
-		<div className={styles.modal}></div>
-	);
-};
+const portalElement = document.getElementById("overlays");
 
-const Modal = () =>{
+const Modal = (props) => {
 	return (
 		<Fragment>
-			{ReactDOM.createPortal(<ModalOverlay />, document.getElementById('overlay-root'))}
-			{ReactDOM.createPortal(<Backdrop />, document.getElementById('backdrop-root'))}
+			{ReactDOM.createPortal(<Backdrop />, portalElement)}
+			{ReactDOM.createPortal(
+				<ModalOverlay>{props.children}</ModalOverlay>,
+				portalElement
+			)}
 		</Fragment>
 	);
 };
