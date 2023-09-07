@@ -2,5 +2,6 @@
    "editor.insertSpaces": false,
    "editor.tabSize": 3,
    "prettier.tabWidth": 3,
-   "prettier.useTabs": true
+   "prettier.useTabs": true,
+   "prettier.singleQuote": true
 }

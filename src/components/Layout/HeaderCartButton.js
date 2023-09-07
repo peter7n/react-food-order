@@ -9,8 +9,10 @@ const HeaderCartButton = (props) => {
 		return curNumber + item.amount;
 	}, 0);
 
+	const btnClasses = `${styles.button} ${styles.bump}`;
+
 	return (
-		<button className={styles.button} onClick={props.onClick}>
+		<button className={btnClasses} onClick={props.onClick}>
 			<span className={styles.icon}>
 				<CartIcon />
 			</span>
